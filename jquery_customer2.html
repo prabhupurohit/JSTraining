@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.css">
+
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+    <script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="vendor/underscore/underscore.js"></script>
+    <script type="text/javascript">
+    	var uri="http://localhost:9000/customers";
+    	
+
+    	//document ready
+    	$(function(){
+    		var list = $("#customerList");
+    		var tmpl = $("#customerTemplate").html();
+    		$.getJSON(uri, function(data){
+    			 data.forEach(function(customer) {
+    			 	 var customerTempl = _.template(tmpl);
+    			 	 var compiled = customerTempl({"customer": customer});
+    			 	 list.append(compiled);
+    			 });
+    		});
+
+    		$(document).on("click",".cardClose", function(){
+    			var id = $(this).parent().parent().find("input").val()
+    			$(this).parent().parent().remove();
+    			var delUri = uri +"/" + id;
+    			$.ajax({
+    				url : delUri,
+    				type : 'delete'
+    			});
+
+    		});
+    	});
+    </script>
+</head>
+
+<body class="container">
+	<script type="text/template" id="customerTemplate">
+			<div class="card col-md-3">
+				<div class="cardHeader">
+					<%- customer.firstName %> <%- customer.lastName %> 
+					<a href="#" class="cardClose pull-right">&times;</a>
+				</div>
+				<div class="cardBody">
+					<img src="image/<%- customer.gender %>.png" class="cardImage" />
+				</div>
+			</div>
+	</script>
+	<div class="row" id="customerList">
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+    	
+    	//document ready
+    	$(function(){
+    		$('.del').on("click",function(e){
+    			console.log($(this));
+    			$(this).parent().parent().remove();
+    		});
+    	});
+    </script>
+</head>
+
+<body>
+    <table id="tbl">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <td>100</td>
+            <td>iPhone7</td>
+            <td>80000.00</td>
+            <td><button type="button" class="del">Delete</button> </td>
+        </tr>
+        <tr>
+            <td>102</td>
+            <td>MotoG</td>
+            <td>12000.00</td>
+            <td><button type="button" class="del">Delete</button> </td>
+        </tr>
+    </table>
+    <ul id="mylist">
+        <li>Coffee</li>
+        <li>Tea
+            <ul>
+                <li>Black tea</li>
+                <li>Green tea</li>
+            </ul>
+        </li>
+        <li>Milk</li>
+    </ul>
+</body>
+
+</html>

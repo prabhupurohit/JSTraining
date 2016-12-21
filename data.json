@@ -1,0 +1,40 @@
+{
+	"customers":[
+		{
+			"id":1,
+			"firstName": "Ross",
+			"lastName": "Geller",
+			"address" : "West Street",
+			"gender" : "male"
+		},
+		{
+			"id":2,
+			"firstName": "Monica",
+			"lastName": "Geller",
+			"address" : "West Street",
+			"gender" : "female"
+		},
+		{
+			"id":3,
+			"firstName": "Rachel",
+			"lastName": "Green",
+			"address" : "West Street",
+			"gender" : "female"
+		},
+		{
+			"id":4,
+			"firstName": "Joey",
+			"lastName": "Tribuanni",
+			"address" : "West Street",
+			"gender" : "male"
+		},
+		{
+			"id":5,
+			"firstName": "Chandler",
+			"lastName": "Bing",
+			"address" : "West Street",
+			"gender" : "male"
+		}
+	],
+	"orders" : []
+}

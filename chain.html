@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <h2> Chain of Responsibility </h2>
+</body>
+<script type="text/javascript">
+var MoneyStack = function(noteType, nextStack) {
+    this.noteType = noteType;
+    this.nextStack = nextStack;
+}
+
+MoneyStack.prototype.withdraw = function(amt) {
+    var notes = Math.floor(amt / this.noteType);
+    this.eject(notes);
+    var bal = amt - notes * this.noteType;
+    if(bal > 0 && this.nextStack != null) {
+    	this.nextStack.withdraw(bal);
+    }
+}
+
+MoneyStack.prototype.eject = function(no) {
+	console.log("collect " + no + " of " + this.noteType);
+}
+
+var moneyStack100 = new MoneyStack(100, null);
+
+var moneyStack500 = new MoneyStack(500, moneyStack100);
+
+var moneyStack1000 =  new MoneyStack(1000, moneyStack500);
+
+var Atm = function(baseStack) {
+	this.baseStack = baseStack;
+
+	this.withdraw = function(amt) {
+		this.baseStack.withdraw(amt);
+	}
+}
+
+var atm = new Atm(moneyStack1000);
+atm.withdraw(5900);
+atm.withdraw(7400);
+</script>
+
+</html>

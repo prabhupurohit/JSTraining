@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+
+<body>
+<form>
+	ID <input type="text" id="id"> <br />
+	Name <input type="text" id="name"> <br />
+	<button type="button" id="addBtn"> Add Product </button> 
+
+</form>
+<script type="text/javascript">
+	
+var db = openDatabase("PROD_DB","Product database","1.0",1*1024*1024);
+
+function init() {
+	db.transaction(function(tx){
+		tx.executeSql("create table PRODUCTS(ID INT PRIMARY KEY, NAME TEXT)");
+	});
+}
+
+function add(){
+	db.transaction(function(tx){
+		var id = parseInt(document.getElementById("id").value);
+		var name = document.getElementById("name").value
+		tx.executeSql("insert into PRODUCTS values(?,?)",[id,name]);
+	});
+	list();
+}
+
+function list() {
+	db.transaction(function(tx){
+		tx.executeSql("select * from PRODUCTS",[], print);
+	});	
+}
+
+function print(tx, rs) {
+	for(i = 0; i < rs.rows.length; i++) {
+		console.log(rs.rows.item(i));
+	}
+}
+	document.addEventListener("DOMContentLoaded",init);
+	document.getElementById("addBtn").addEventListener("click",add);
+</script>
+</body>
+</html>

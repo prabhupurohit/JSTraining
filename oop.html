@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    	var Message = function(msg, author, date) {
+    		this.msg = msg || "";
+    		this.author = author || "@anonymous";
+    		this.date = date || new Date();
+    	}
+    	// class owned instance methods
+    	Message.prototype.printDetails = function() {
+    		console.log(this.msg + ", " + this.author + ", " + this.date);
+    	}
+
+    	// class owned class method [ static]
+    	Message.compare = function(m1, m2) {
+    		return m1.date > m2.date;
+    	}
+
+    	var msgs = [
+    		new Message("Learning JS"),
+    		new Message("Joined GE Digital","Ross",new Date(2014,10,21)),
+    		new Message("Purchased a Car","Monica")
+    		
+    	];
+
+    	msgs.sort(Message.compare);
+
+    	msgs.forEach(function(msg){
+    		msg.printDetails();
+    	});
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	
+	var obj = {
+		x : 10,
+		one : function(fn) {
+			// fn.apply(this);
+			// fn.call(this);
+			fn();
+		},
+		two: function() {
+			console.log(this.x);
+		},
+		third : function() {
+			// this.one(this.two);
+			this.one(this.two.bind(this));
+		}
+	}
+
+	obj.third();
+</script>
+</body>
+</html>

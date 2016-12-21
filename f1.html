@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		function greeting(msg) {
+			return function(name) {
+				return msg + " " + name; //msg is a closure
+			}
+		}
+		var morningGreet = greeting("Good Morning");
+		var greet = greeting("Good Day!!!");
+		console.log(morningGreet("Rakesh"));
+		console.log(morningGreet("Suresh"));
+
+		console.log(greet("Rakesh"));
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1> Basic High Order function which accept other function as argument </h1>
+	<script type="text/javascript">
+		 var data = [3,2,7,25,15,22,100];
+
+		 function forLoop(action, elems) {
+		 	for(var i = 0; i < elems.length; i++ ){
+		 		action(elems[i]);
+		 	}
+		 }
+
+	 	function reduce(base, reduceFn, elems) {
+	 		forLoop(function(val) {
+	 			base =  reduceFn(base, val);
+	 		}, elems);
+	 		return base;
+	 	}
+
+	 	var result = reduce(0.0, function(v1, v2) {
+	 			return v1 + v2;
+	 	}, data);
+
+	 	console.log(result);
+	  
+	</script>
+</body>
+</html>

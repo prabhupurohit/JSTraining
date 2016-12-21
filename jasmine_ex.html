@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <!-- Jasmine References -->
+    <link rel="stylesheet" type="text/css" href="vendor/jasmine-core/lib/jasmine-core/jasmine.css">
+    <script src="vendor/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script type="text/javascript" src="vendor/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script type="text/javascript" src="vendor/jasmine-core/lib/jasmine-core/boot.js"></script>
+   
+  </head>
+  <body></body>
+  <script type="text/javascript">
+
+    function add(x, y) {
+      return x + y;
+    }
+    
+    var shop = (function(){
+        var cart = [];
+        function addItem(item) {
+          cart.push(item);
+        }
+
+        function getItems() {
+          return cart;
+        }
+
+        function getCount() {
+          return cart.length;
+        }
+
+        return {
+          add: addItem,
+          get : getItems,
+          length : getCount
+        };
+    })();
+
+    
+    /* Test Code */
+    describe('calculator', function () {
+     
+      describe("cart test" , function() {
+        it("test add", function() {
+          shop.add({"id":1,"name":"Dell"});
+          expect(1).toBe(shop.length());
+        });
+        it("get test", function() {
+          shop.add({"id":1,"name":"Dell"});
+          expect("Dell").toEqual(shop.get()[0].name);
+        });
+      })
+
+      describe('sum', function () {
+        it('1 + 1 should equal 2', function () {
+               expect(add(1,1)).toBe(2);
+        }); 
+      });
+    });
+
+  </script>
+</html>

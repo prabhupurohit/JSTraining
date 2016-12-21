@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		function adder(base) {
+			return function(val) {
+				return base + val ; //msg is a closure
+			}
+		}
+		var fiveAdder = adder(5);
+		var tenAdder = adder(10);
+
+		console.log(fiveAdder(2)); // 7
+		console.log(tenAdder(3)); // 13
+
+		console.log(adder(3)(2));//5
+	</script>
+</body>
+</html>

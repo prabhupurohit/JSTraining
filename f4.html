@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1> Basic High Order function which accept other function as argument </h1>
+	<script type="text/javascript">
+		 var data = [3,2,7,25,15,22,100];
+
+		 function forLoop(action, elems) {
+		 	for(var i = 0; i < elems.length; i++ ){
+		 		action(elems[i]);
+		 	}
+		 }
+
+	 	function filter(predicate, elems) {
+	 		var result = [];
+	 		forLoop(function(val) {
+	 			result.push(mapper(val));
+	 		}, elems);
+	 		return result;
+	 	}
+
+	 	var result = map(function(v) {
+	 			return v + 99;
+	 	}, data);
+
+	 	forLoop(console.log, result);
+
+
+		  
+	</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+       	var dom = {};
+    	dom.Button = function() {
+    		this.text = "";
+    		this.insert = function(where) {
+    			var btn = document.createElement("button");//<button></button>
+    			var txt = document.createTextNode(this.text);
+    			btn.appendChild(txt);//<button>text content</button>
+    			where.append(btn);
+    		}
+    	};
+    	dom.Link = function() {
+    		this.text = "";
+    		this.insert = function(where) {
+    			var lnk = document.createElement("a");//<button></button>
+    			var txt = document.createTextNode(this.text);
+    			lnk.appendChild(txt);//<button>text content</button>
+    			lnk.href = this.text;
+    			where.append(lnk);
+    		}
+    	};
+
+    	// factory
+    	dom.factory = function(type) {
+    		return new dom[type];
+    	}
+
+    	var b = dom.factory('Button');
+    	b.text = "Click Me";
+    	b.insert(document.body);
+
+    	var link = dom.factory('Link');
+    	link.text = 'http://ge.com';
+    	link.insert(document.body);
+    </script>
+</body>
+
+</html>

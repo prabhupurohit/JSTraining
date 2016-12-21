@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="worker.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	var worker = new Worker("worker.js");
+
+	worker.onmessage = function(event) {
+		alert(event.data);
+	} 
+
+	function test() {
+		alert("Hi!!!");
+	}
+</script>
+
+<button type="button" onclick="test()">Test</button>
+</body>
+</html>

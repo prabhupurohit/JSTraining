@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Customer App</title>
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/custom_style.css">
+    <script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/dist/js/bootstrap.js">
+    </script>
+    <script type="text/javascript" src="vendor/angular/angular.js"></script>
+    
+    <script type="text/javascript">
+        angular.module("sample_module",[]);
+         angular.module("sample_module").controller("SampleController",[
+            "$scope", function($scope) {
+                $scope.color = 'red';
+            }
+        ]);
+
+        angular.module("sample_module").directive("helloWorld", function(){
+            return {
+                template :'<button type="button" style="background-color:{{color}}">Click</button>',
+                restrict :'EA',
+                scope: true,  /* false ---> Shared  true ---> Inherited */
+                link :  function(scope, elem, attrs) {
+                    elem.bind("click", function(evt) {
+                        evt.preventDefault();
+                        scope.color = 'green';
+                        scope.$apply();
+                    });
+
+                    elem.bind("mouseover", function(evt) {
+                        evt.preventDefault();
+                        scope.color = 'pink';
+                        scope.$apply();
+                    });
+                }
+            }
+        });
+    </script>
+</head>
+
+<body ng-app="sample_module">
+    <div ng-controller="SampleController">
+        <h1>{{color}}</h1>
+        <hello-world></hello-world> <br />
+        <hello_world></hello_world>  <br />
+        <hello:world></hello:world>  <br />
+        <div hello_world></div>
+    </div>
+</body>
+
+</html>
